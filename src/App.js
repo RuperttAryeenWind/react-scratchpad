@@ -1,22 +1,10 @@
 import React, { Component } from "react";
 
-const Family = (props) => (
-  <div>
-    <Person name={props.name} />
-  </div>
-);
+const MyContext = React.createContext();
 
-class Person extends Component {
-  render() {
-    return (
-      <div className='App'>
-        <p>Hey, I am { this.props.name }</p>
-      </div>
-    );
-  }
-}
+// Create a provider
+class MyProvider extends Component {
 
-class App extends Component {
   state = {
     name: "Rupertt",
     age: 29
@@ -24,9 +12,50 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <Family name={ this.state.name } />
+      // The value is passed on as an object.
+      <MyContext.Provider value={{
+          state: this.state
+        }}>
+        {this.props.children}
+      </MyContext.Provider>
+    )
+  }
+}
+
+const Family = (props) => (
+  <div>
+    <Person />
+  </div>
+)
+
+class Person extends Component {
+  render() {
+    return (
+      <div>
+        {/* Context.Consumer uses a render prop to pass the data.*/}
+        <MyContext.Consumer>
+          {/* Render props always requires a function as its consumer */}
+          {(context) => (
+            // React.Fragment provides a blank tag to wrap tags in.
+            <React.Fragment>
+              <div>My name is {context.state.name}</div>
+              <div>My age is {context.state.age}</div>
+            </React.Fragment>
+          )}
+        </MyContext.Consumer>
       </div>
+    );
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      <MyProvider>
+        <div className='App'>
+          <Family />
+        </div>
+      </MyProvider>
     );
   }
 }
