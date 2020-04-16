@@ -14,7 +14,10 @@ class MyProvider extends Component {
     return (
       // The value is passed on as an object.
       <MyContext.Provider value={{
-          state: this.state
+          state: this.state,
+          growOlder: () => this.setState({
+            age: this.state.age + 1
+          })
         }}>
         {this.props.children}
       </MyContext.Provider>
@@ -40,6 +43,7 @@ class Person extends Component {
             <React.Fragment>
               <div>My name is {context.state.name}</div>
               <div>My age is {context.state.age}</div>
+              <button onClick={context.growOlder}>older</button>
             </React.Fragment>
           )}
         </MyContext.Consumer>
