@@ -7,7 +7,8 @@ class Product extends React.Component {
     const { product } = this.props;
 
     return (
-      <Card border='light' style={{ width: '18rem' }}>
+      <div class="product-card">
+      <Card border='light' style={{ width: '18rem', minWidth: 'max-content' }}>
         <Card.Img
           variant='top'
           src={product.productImage}
@@ -19,6 +20,7 @@ class Product extends React.Component {
           <Button variant='primary'>Add to Cart</Button>
         </Card.Body>
       </Card>
+      </div>
     );
   }
 }

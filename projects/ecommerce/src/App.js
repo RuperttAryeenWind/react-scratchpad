@@ -1,12 +1,18 @@
 import React from 'react';
-import ProductList from './containers/product/ProductList';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/navbar/Header';
+import { BrowserRouter } from "react-router-dom";
+import Footer from './components/common/Footer';
+import AppContainer from './containers/common/AppContainer';
 
 function App() {
   return (
-    <div className='App'>
-      <ProductList/>
+    <div className='app'>
+      <BrowserRouter>
+        <Header />
+        <AppContainer />
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

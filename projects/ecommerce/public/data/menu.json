@@ -1,0 +1,10 @@
+[
+    {
+        "menuLabel": "Products",
+        "menuLink": "/products"
+    },
+    {
+        "menuLabel": "Checkout",
+        "menuLink": "/checkout"
+    }
+]
